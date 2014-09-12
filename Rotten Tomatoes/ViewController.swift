@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         
         
-        let request = NSMutableURLRequest(URL: NSURL.URLWithString(RottenTomatoesURLString))
+        let request = NSMutableURLRequest(URL: NSURL(string: RottenTomatoesURLString))
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: {(response, data, error) in
             println("request finished")
             var errorValue: NSError? = nil
