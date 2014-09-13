@@ -11,5 +11,6 @@
 
 #import <AFNetworking/AFNetworking.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <ALAlertBanner/ALAlertBanner.h>
 
 #endif

@@ -32,7 +32,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             failure: { (operation: AFHTTPRequestOperation!,
                 error: NSError!) in
                 MBProgressHUD.hideHUDForView(self.view, animated: true)
-                println("Error: " + error.localizedDescription)
+                let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                ALAlertBanner(forView: appDelegate.window, style:ALAlertBannerStyleFailure,
+                    position: ALAlertBannerPositionUnderNavBar, title: "Network Error").show()
         })
     }
     
