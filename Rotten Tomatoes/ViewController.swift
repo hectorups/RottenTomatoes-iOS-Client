@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var moviesTableView: UITableView!
     let RottenTomatoesURLString = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=fg5hr3dnejswzb6ybv9v9nxb"
     let manager = AFHTTPRequestOperationManager()
-    var moviesArray: NSArray?
+    var moviesArray: [Movie] = []
     var refreshControl: UIRefreshControl = UIRefreshControl()
     @IBOutlet weak var movieTableView: UITableView!
     
@@ -37,7 +37,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             success: { (operation: AFHTTPRequestOperation!,
                 responseObject: AnyObject!) in
                 self.dataFetchFinished()
-                self.moviesArray = responseObject["movies"] as? NSArray
+                
+                self.moviesArray.removeAll(keepCapacity: false)
+                var moviesJsonArray = responseObject["movies"] as? NSArray
+                for movieDictionary in moviesJsonArray! {
+                    self.moviesArray.append(Movie(fromDictionary: movieDictionary as NSDictionary))
+                }
                 self.movieTableView.reloadData()
             },
             failure: { (operation: AFHTTPRequestOperation!,
@@ -59,29 +64,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if moviesArray != nil {
-            return moviesArray!.count
-        } else {
-           return 0;
-        }
+        return moviesArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = movieTableView.dequeueReusableCellWithIdentifier("com.codepath.rottentomatoes.moviecell") as MovieTableViewCell
-        let movieDictionary = self.moviesArray![indexPath.row] as NSDictionary
-        cell.titleLabel.text = movieDictionary["title"] as NSString
-        cell.synopsisLabel.text = movieDictionary["synopsis"] as NSString
-        
-        var posters = movieDictionary["posters"] as NSDictionary
-        var posterUrl = posters["thumbnail"] as String
-        cell.thumbImage.setImageWithURL(NSURL(string: posterUrl))
+        let movie = self.moviesArray[indexPath.row] as Movie
+        cell.titleLabel.text = movie.title
+        cell.synopsisLabel.text = movie.synopsis
+        cell.thumbImage.setImageWithURL(NSURL(string: movie.thumbnailUrl))
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detailsViewController = MovieDetailsViewController(nibName: nil, bundle: nil)
-        self.navigationController?.pushViewController(detailsViewController, animated: true)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        println("on prepareforsegue")
+        println(segue.identifier)
+        if segue.identifier == "DetailSegue" {
+            var controller = segue.destinationViewController as MovieDetailsViewController
+            var indexPath : NSIndexPath! = moviesTableView.indexPathForCell(sender as MovieTableViewCell)
+            println(indexPath.row)
+            controller.movie = self.moviesArray[indexPath.row] as Movie
+        }
     }
 
 

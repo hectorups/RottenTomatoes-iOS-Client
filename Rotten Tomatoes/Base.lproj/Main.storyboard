@@ -17,7 +17,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="com.codepath.rottentomatoes.moviecell" rowHeight="110" id="pSu-Ye-Z6x" customClass="MovieTableViewCell" customModule="Rotten_Tomatoes" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="com.codepath.rottentomatoes.moviecell" rowHeight="110" id="pSu-Ye-Z6x" customClass="MovieTableViewCell" customModule="Rotten_Tomatoes" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pSu-Ye-Z6x" id="JZ5-sX-f5E">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -46,6 +46,7 @@
                                             <outlet property="synopsisLabel" destination="XNx-EJ-61P" id="6MX-P9-iiS"/>
                                             <outlet property="thumbImage" destination="3gI-fv-9qb" id="jX6-MY-nPp"/>
                                             <outlet property="titleLabel" destination="uU9-vZ-4zw" id="jdK-CR-waY"/>
+                                            <segue destination="her-oa-rY4" kind="push" identifier="DetailSegue" id="NOc-Jz-4nX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -66,6 +67,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="694" y="348"/>
+        </scene>
+        <!--Movie Details View Controller-->
+        <scene sceneID="jGY-Wc-zlS">
+            <objects>
+                <viewController id="her-oa-rY4" customClass="MovieDetailsViewController" customModule="Rotten_Tomatoes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UEM-aY-u4Y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="966-cr-nNt">
+                                <rect key="frame" x="-6" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9j3-fU-EfS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IUa-I0-LnD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1070" y="344"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QKB-2D-yFU">

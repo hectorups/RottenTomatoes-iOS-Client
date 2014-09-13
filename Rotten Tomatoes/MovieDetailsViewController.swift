@@ -10,7 +10,10 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
     
+    var movie : Movie?
+    
     override func loadView() {
+        println(movie)
         self.view = UIView(frame: CGRectZero)
         self.view.backgroundColor = UIColor.redColor()
     }
