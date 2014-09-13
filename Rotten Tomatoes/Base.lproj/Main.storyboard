@@ -60,6 +60,7 @@
                     <navigationItem key="navigationItem" id="hzT-y2-iZB"/>
                     <connections>
                         <outlet property="movieTableView" destination="QjB-ar-7rM" id="Czr-Ay-olf"/>
+                        <outlet property="moviesTableView" destination="QjB-ar-7rM" id="JmV-eg-l3L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

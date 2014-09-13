@@ -10,32 +10,52 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var moviesTableView: UITableView!
     let RottenTomatoesURLString = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=fg5hr3dnejswzb6ybv9v9nxb"
     let manager = AFHTTPRequestOperationManager()
     var moviesArray: NSArray?
+    var refreshControl: UIRefreshControl = UIRefreshControl()
     @IBOutlet weak var movieTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        fetchData()
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refersh")
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        movieTableView.addSubview(refreshControl)
+    }
+    
+    func fetchData(pullrefresh: Bool = false) {
+        if !pullrefresh {
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        }
         manager.GET(
             RottenTomatoesURLString,
             parameters: nil,
             success: { (operation: AFHTTPRequestOperation!,
                 responseObject: AnyObject!) in
-                MBProgressHUD.hideHUDForView(self.view, animated: true)
-                println("request finished")
+                self.dataFetchFinished()
                 self.moviesArray = responseObject["movies"] as? NSArray
                 self.movieTableView.reloadData()
             },
             failure: { (operation: AFHTTPRequestOperation!,
                 error: NSError!) in
-                MBProgressHUD.hideHUDForView(self.view, animated: true)
+                self.dataFetchFinished()
                 let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
                 ALAlertBanner(forView: appDelegate.window, style:ALAlertBannerStyleFailure,
                     position: ALAlertBannerPositionUnderNavBar, title: "Network Error").show()
         })
+    }
+    
+    func dataFetchFinished(){
+        self.refreshControl.endRefreshing()
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
+    }
+    
+    func refresh(sender:AnyObject){
+        fetchData(pullrefresh: true)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,7 +71,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let movieDictionary = self.moviesArray![indexPath.row] as NSDictionary
         cell.titleLabel.text = movieDictionary["title"] as NSString
         cell.synopsisLabel.text = movieDictionary["synopsis"] as NSString
-        cell.thumbImage.setImageFromUrl((movieDictionary["posters"] as NSDictionary)["thumbnail"] as NSString)
+        
+        var posters = movieDictionary["posters"] as NSDictionary
+        var posterUrl = posters["thumbnail"] as String
+        cell.thumbImage.setImageWithURL(NSURL(string: posterUrl))
+        
         return cell
     }
     

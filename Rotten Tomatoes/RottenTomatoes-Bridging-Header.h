@@ -10,6 +10,7 @@
 #define Rotten_Tomatoes_RottenTomatoes_Bridging_Header_h
 
 #import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <ALAlertBanner/ALAlertBanner.h>
 
