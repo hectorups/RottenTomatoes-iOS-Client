@@ -10,5 +10,6 @@
 #define Rotten_Tomatoes_RottenTomatoes_Bridging_Header_h
 
 #import <AFNetworking/AFNetworking.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 #endif

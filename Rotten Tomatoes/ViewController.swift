@@ -18,17 +18,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         manager.GET(
             RottenTomatoesURLString,
             parameters: nil,
             success: { (operation: AFHTTPRequestOperation!,
                 responseObject: AnyObject!) in
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
                 println("request finished")
                 self.moviesArray = responseObject["movies"] as? NSArray
                 self.movieTableView.reloadData()
             },
             failure: { (operation: AFHTTPRequestOperation!,
                 error: NSError!) in
+                MBProgressHUD.hideHUDForView(self.view, animated: true)
                 println("Error: " + error.localizedDescription)
         })
     }
