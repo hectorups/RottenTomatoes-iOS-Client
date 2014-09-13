@@ -45,7 +45,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = movieTableView.dequeueReusableCellWithIdentifier("com.codepath.rottentomatoes.moviecell") as MovieTableViewCell
         let movieDictionary = self.moviesArray![indexPath.row] as NSDictionary
         cell.titleLabel.text = movieDictionary["title"] as NSString
-        cell.picLabel.text = (movieDictionary["posters"] as NSDictionary)["thumbnail"] as NSString
+        cell.synopsisLabel.text = movieDictionary["synopsis"] as NSString
+        cell.thumbImage.setImageFromUrl((movieDictionary["posters"] as NSDictionary)["thumbnail"] as NSString)
         return cell
     }
     
