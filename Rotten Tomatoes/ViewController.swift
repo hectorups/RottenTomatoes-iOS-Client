@@ -74,7 +74,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let movie = self.moviesArray[indexPath.row] as Movie
         cell.titleLabel.text = movie.title
         cell.synopsisLabel.text = movie.synopsis
-        cell.thumbImage.setImageWithURL(NSURL(string: movie.thumbnailUrl))
+        
+        cell.thumbImage.setImageWithURLRequest(
+            NSURLRequest(URL: NSURL(string: movie.thumbnailUrl)),
+            placeholderImage: nil,
+            success: { (request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) in
+                println("Image loaded")
+                cell.thumbImage.alpha = 0.0
+                cell.thumbImage.image = image
+                UIView.animateWithDuration(0.5, animations: {cell.thumbImage.alpha = 1.0})
+            },
+            failure: { (request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) in
+                println("Image failed to load")
+        })
         
         return cell
     }
@@ -84,9 +96,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         println(segue.identifier)
         if segue.identifier == "DetailSegue" {
             var controller = segue.destinationViewController as MovieDetailsViewController
-            var indexPath : NSIndexPath! = moviesTableView.indexPathForCell(sender as MovieTableViewCell)
+            var cell = sender as MovieTableViewCell
+            var indexPath : NSIndexPath! = moviesTableView.indexPathForCell(cell)
             println(indexPath.row)
             controller.movie = self.moviesArray[indexPath.row] as Movie
+            controller.thumbnail = cell.thumbImage.image
         }
     }
 

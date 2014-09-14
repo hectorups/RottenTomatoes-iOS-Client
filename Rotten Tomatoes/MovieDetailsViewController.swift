@@ -17,6 +17,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var posterImage: UIImageView!
     
     var movie : Movie?
+    var thumbnail : UIImage?
     
     override func loadView() {
         super.loadView()
@@ -26,7 +27,18 @@ class MovieDetailsViewController: UIViewController {
         synopsisLabel.text = movie?.synopsis
         synopsisLabel.sizeToFit()
         detailsScroll.scrollEnabled = true
-        posterImage.setImageWithURL(NSURL(string: movie!.posterUrl))
+        posterImage.setImageWithURLRequest(
+            NSURLRequest(URL: NSURL(string:movie!.posterUrl)),
+            placeholderImage: thumbnail!,
+            success: { (request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) in
+                println("Image loaded")
+                self.posterImage.alpha = 0.0
+                self.posterImage.image = image
+                UIView.animateWithDuration(1.0, animations: {self.posterImage.alpha = 1.0})
+            },
+            failure: { (request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) in
+                println("Image failed to load")
+        })
     }
     
     override func viewDidLoad() {
