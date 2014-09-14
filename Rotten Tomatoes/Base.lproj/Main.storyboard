@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Rotten_Tomatoes" customModuleProvider="target" sceneMemberID="viewController">
@@ -58,10 +58,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hzT-y2-iZB"/>
+                    <navigationItem key="navigationItem" title="Title" id="hzT-y2-iZB"/>
                     <connections>
                         <outlet property="movieTableView" destination="QjB-ar-7rM" id="Czr-Ay-olf"/>
                         <outlet property="moviesTableView" destination="QjB-ar-7rM" id="JmV-eg-l3L"/>
+                        <outlet property="navigationTitle" destination="hzT-y2-iZB" id="Sqa-tZ-ypR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -110,7 +111,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="9j3-fU-EfS"/>
+                    <navigationItem key="navigationItem" title="Title" id="9j3-fU-EfS">
+                        <barButtonItem key="backBarButtonItem" title="Movies" id="3O7-aJ-XEg"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="detailsNavigation" destination="9j3-fU-EfS" id="8ap-4H-AIo"/>
                         <outlet property="detailsScroll" destination="GS6-WY-9cq" id="DrP-ib-pA2"/>
@@ -128,7 +131,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="70N-X2-mG5" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bpr-j5-CWx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="bpr-j5-CWx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

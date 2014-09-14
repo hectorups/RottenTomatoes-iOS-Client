@@ -16,6 +16,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var moviesArray: [Movie] = []
     var refreshControl: UIRefreshControl = UIRefreshControl()
     @IBOutlet weak var movieTableView: UITableView!
+    @IBOutlet weak var navigationTitle: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refersh")
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         movieTableView.addSubview(refreshControl)
+        
+        navigationTitle.title = "Best Movies"
+        
     }
     
     
@@ -87,6 +91,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             failure: { (request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) in
                 println("Image failed to load")
         })
+        
+        // Customize background when the cell is selected
+        var selectedView = UIView()
+        selectedView.backgroundColor = UIColor(red: 235/255, green: 185/255, blue: 0.0, alpha: 1.0)
+        cell.selectedBackgroundView = selectedView
         
         return cell
     }

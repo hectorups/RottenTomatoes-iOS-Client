@@ -39,6 +39,10 @@ class MovieDetailsViewController: UIViewController {
             failure: { (request: NSURLRequest!, response: NSHTTPURLResponse!, error: NSError!) in
                 println("Image failed to load")
         })
+        
+        let yellow = UIColor(red: 235/255, green: 185/255, blue: 0.0, alpha: 1.0)
+        navigationController?.navigationBar.tintColor = yellow
+        navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: yellow, forKey: NSForegroundColorAttributeName)
     }
     
     override func viewDidLoad() {

@@ -25,5 +25,15 @@ class MovieTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        if highlighted {
+            synopsisLabel.textColor = UIColor.redColor()
+            titleLabel.textColor = UIColor.redColor()
+        } else {
+            synopsisLabel.textColor = UIColor.blackColor()
+            titleLabel.textColor = UIColor.blackColor()
+        }
+    }
 
 }
