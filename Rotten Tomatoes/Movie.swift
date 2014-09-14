@@ -19,6 +19,6 @@ struct Movie {
         synopsis = movieDictionary["synopsis"] as String
         let posters = movieDictionary["posters"] as NSDictionary
         thumbnailUrl = posters["thumbnail"] as String
-        posterUrl = posters["thumbnail"] as String
+        posterUrl = thumbnailUrl.stringByReplacingOccurrencesOfString("tmb", withString: "ori", options: NSStringCompareOptions.LiteralSearch, range: nil)
     }
 }

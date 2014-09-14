@@ -68,7 +68,7 @@
             </objects>
             <point key="canvasLocation" x="694" y="348"/>
         </scene>
-        <!--Movie Details View Controller-->
+        <!--Title-->
         <scene sceneID="jGY-Wc-zlS">
             <objects>
                 <viewController id="her-oa-rY4" customClass="MovieDetailsViewController" customModule="Rotten_Tomatoes" customModuleProvider="target" sceneMemberID="viewController">
@@ -77,17 +77,51 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="966-cr-nNt">
-                                <rect key="frame" x="-6" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="-6" y="0.0" width="326" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="GS6-WY-9cq">
+                                <rect key="frame" x="0.0" y="65" width="318" height="503"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view alpha="0.59999999999999964" contentMode="scaleToFill" id="8ll-PI-Ts8">
+                                        <rect key="frame" x="0.0" y="290" width="319" height="213"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="synopsis" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p5V-9h-y1K">
+                                                <rect key="frame" x="24" y="36" width="275" height="203"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vvW-bT-wiR">
+                                                <rect key="frame" x="24" y="7" width="275" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9j3-fU-EfS"/>
+                    <navigationItem key="navigationItem" title="Title" id="9j3-fU-EfS"/>
+                    <connections>
+                        <outlet property="detailsNavigation" destination="9j3-fU-EfS" id="8ap-4H-AIo"/>
+                        <outlet property="detailsScroll" destination="GS6-WY-9cq" id="DrP-ib-pA2"/>
+                        <outlet property="posterImage" destination="966-cr-nNt" id="yn2-xW-uSM"/>
+                        <outlet property="synopsisLabel" destination="p5V-9h-y1K" id="iS2-pe-7co"/>
+                        <outlet property="titleLabel" destination="vvW-bT-wiR" id="vXC-YH-cZf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUa-I0-LnD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1070" y="344"/>
+            <point key="canvasLocation" x="1141" y="348"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QKB-2D-yFU">

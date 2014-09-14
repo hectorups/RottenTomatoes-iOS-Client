@@ -10,12 +10,23 @@ import UIKit
 
 class MovieDetailsViewController: UIViewController {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var synopsisLabel: UILabel!
+    @IBOutlet weak var detailsNavigation: UINavigationItem!
+    @IBOutlet weak var detailsScroll: UIScrollView!
+    @IBOutlet weak var posterImage: UIImageView!
+    
     var movie : Movie?
     
     override func loadView() {
-        println(movie)
-        self.view = UIView(frame: CGRectZero)
-        self.view.backgroundColor = UIColor.redColor()
+        super.loadView()
+
+        titleLabel.text = movie?.title
+        detailsNavigation.title = movie?.title
+        synopsisLabel.text = movie?.synopsis
+        synopsisLabel.sizeToFit()
+        detailsScroll.scrollEnabled = true
+        posterImage.setImageWithURL(NSURL(string: movie!.posterUrl))
     }
     
     override func viewDidLoad() {

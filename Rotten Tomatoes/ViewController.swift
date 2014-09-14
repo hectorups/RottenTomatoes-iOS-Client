@@ -27,6 +27,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         movieTableView.addSubview(refreshControl)
     }
     
+    
+    
     func fetchData(pullrefresh: Bool = false) {
         if !pullrefresh {
             MBProgressHUD.showHUDAddedTo(self.view, animated: true)
