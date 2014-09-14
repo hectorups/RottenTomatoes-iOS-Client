@@ -17,6 +17,7 @@
 		951298E619C291B400A72253 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951298E519C291B400A72253 /* MovieTableViewCell.swift */; };
 		951298E819C2A3C900A72253 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951298E719C2A3C900A72253 /* MovieDetailsViewController.swift */; };
 		9527651219C4F0590060FECD /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9527651119C4F0590060FECD /* Movie.swift */; };
+		9536135C19C609100010AE30 /* RTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536135B19C609100010AE30 /* RTClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		951298E519C291B400A72253 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		951298E719C2A3C900A72253 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		9527651119C4F0590060FECD /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		9536135B19C609100010AE30 /* RTClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RTClient.swift; sourceTree = "<group>"; };
 		957C00B919C39F5E00288A49 /* RottenTomatoes-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RottenTomatoes-Bridging-Header.h"; sourceTree = "<group>"; };
 		9625AF10156E45A79E887BA6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +102,7 @@
 				951298E719C2A3C900A72253 /* MovieDetailsViewController.swift */,
 				957C00B919C39F5E00288A49 /* RottenTomatoes-Bridging-Header.h */,
 				9527651119C4F0590060FECD /* Movie.swift */,
+				9536135B19C609100010AE30 /* RTClient.swift */,
 			);
 			path = "Rotten Tomatoes";
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			files = (
 				951298E819C2A3C900A72253 /* MovieDetailsViewController.swift in Sources */,
 				951298C819C28E5B00A72253 /* ViewController.swift in Sources */,
+				9536135C19C609100010AE30 /* RTClient.swift in Sources */,
 				951298C619C28E5B00A72253 /* AppDelegate.swift in Sources */,
 				951298E619C291B400A72253 /* MovieTableViewCell.swift in Sources */,
 				9527651219C4F0590060FECD /* Movie.swift in Sources */,

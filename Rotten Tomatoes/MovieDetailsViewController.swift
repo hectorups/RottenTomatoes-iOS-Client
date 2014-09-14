@@ -31,7 +31,6 @@ class MovieDetailsViewController: UIViewController {
             NSURLRequest(URL: NSURL(string:movie!.posterUrl)),
             placeholderImage: thumbnail!,
             success: { (request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) in
-                println("Image loaded")
                 self.posterImage.alpha = 0.0
                 self.posterImage.image = image
                 UIView.animateWithDuration(1.0, animations: {self.posterImage.alpha = 1.0})
@@ -40,9 +39,6 @@ class MovieDetailsViewController: UIViewController {
                 println("Image failed to load")
         })
         
-        let yellow = UIColor(red: 235/255, green: 185/255, blue: 0.0, alpha: 1.0)
-        navigationController?.navigationBar.tintColor = yellow
-        navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: yellow, forKey: NSForegroundColorAttributeName)
     }
     
     override func viewDidLoad() {

@@ -8,15 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    @IBOutlet weak var moviesTableView: UITableView!
-    let RottenTomatoesURLString = "http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/top_rentals.json?apikey=fg5hr3dnejswzb6ybv9v9nxb"
-    let manager = AFHTTPRequestOperationManager()
+    let client = RTClient()
     var moviesArray: [Movie] = []
     var refreshControl: UIRefreshControl = UIRefreshControl()
+    
+    @IBOutlet weak var moviesTableView: UITableView!
     @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var navigationTitle: UINavigationItem!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var shouldBeginEditing = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,37 +30,48 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         movieTableView.addSubview(refreshControl)
         
-        navigationTitle.title = "Best Movies"
+        searchBar.delegate = self
         
+        let yellow = UIColor(red: 235/255, green: 185/255, blue: 0.0, alpha: 1.0)
+        navigationController?.navigationBar.tintColor = yellow
+        navigationController?.navigationBar.titleTextAttributes = NSDictionary(object: yellow, forKey: NSForegroundColorAttributeName)
+        navigationTitle.title = "Best Movies"
     }
-    
     
     
     func fetchData(pullrefresh: Bool = false) {
         if !pullrefresh {
             MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         }
-        manager.GET(
-            RottenTomatoesURLString,
-            parameters: nil,
-            success: { (operation: AFHTTPRequestOperation!,
-                responseObject: AnyObject!) in
-                self.dataFetchFinished()
-                
-                self.moviesArray.removeAll(keepCapacity: false)
-                var moviesJsonArray = responseObject["movies"] as? NSArray
-                for movieDictionary in moviesJsonArray! {
-                    self.moviesArray.append(Movie(fromDictionary: movieDictionary as NSDictionary))
-                }
-                self.movieTableView.reloadData()
-            },
-            failure: { (operation: AFHTTPRequestOperation!,
-                error: NSError!) in
-                self.dataFetchFinished()
-                let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-                ALAlertBanner(forView: appDelegate.window, style:ALAlertBannerStyleFailure,
-                    position: ALAlertBannerPositionUnderNavBar, title: "Network Error").show()
-        })
+        
+        var success = { (operation: AFHTTPRequestOperation!,
+            responseObject: AnyObject!) -> Void in
+            self.dataFetchFinished()
+            
+            self.moviesArray.removeAll(keepCapacity: false)
+            var moviesJsonArray = responseObject["movies"] as? NSArray
+            for movieDictionary in moviesJsonArray! {
+                self.moviesArray.append(Movie(fromDictionary: movieDictionary as NSDictionary))
+            }
+            self.movieTableView.reloadData()
+        }
+        
+        var failure = { (operation: AFHTTPRequestOperation!,
+            error: NSError!) -> Void in
+            self.dataFetchFinished()
+            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            ALAlertBanner(forView: appDelegate.window, style:ALAlertBannerStyleFailure,
+                position: ALAlertBannerPositionUnderNavBar, title: "Network Error").show()
+        }
+        
+        if searchBar.text.isEmpty {
+            client.topRentals(
+                success,
+                failure: failure)
+        } else {
+            client.search(searchBar.text, success: success, failure: failure)
+        }
+        
     }
     
     func dataFetchFinished(){
@@ -83,7 +97,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             NSURLRequest(URL: NSURL(string: movie.thumbnailUrl)),
             placeholderImage: nil,
             success: { (request: NSURLRequest!, response: NSHTTPURLResponse!, image: UIImage!) in
-                println("Image loaded")
                 cell.thumbImage.alpha = 0.0
                 cell.thumbImage.image = image
                 UIView.animateWithDuration(0.5, animations: {cell.thumbImage.alpha = 1.0})
@@ -100,6 +113,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        println("search bar button clicked \(searchBar.text)")
+        fetchData(pullrefresh: false)
+        view.endEditing(true)
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            view.endEditing(true)
+            fetchData()
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         println("on prepareforsegue")
         println(segue.identifier)
@@ -112,7 +138,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             controller.thumbnail = cell.thumbImage.image
         }
     }
-
+    
 
 }
 

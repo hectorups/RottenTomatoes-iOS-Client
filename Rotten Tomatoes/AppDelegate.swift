@@ -19,8 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let sharedCache = NSURLCache(memoryCapacity: 2 * 1024 * 1024, diskCapacity: 100 * 1024 * 1024, diskPath: nil)
         NSURLCache.setSharedURLCache(sharedCache)
         
-        // UINavigationBar.appearance().barTintColor = UIColor.blackColor()
-        
         return true
     }
 
