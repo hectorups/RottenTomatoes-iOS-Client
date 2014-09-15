@@ -13,6 +13,7 @@ class RTClient {
     let PrimaryKeyParam = ["apiKey": "fg5hr3dnejswzb6ybv9v9nxb"]
     let BaseURL = "http://api.rottentomatoes.com/api/public/v1.0"
     let TopRentalsURL = "/lists/dvds/top_rentals.json"
+    let BoxOfficeURL = "/lists/movies/box_office.json"
     let SearchURL = "/movies.json"
     let manager = AFHTTPRequestOperationManager()
     
@@ -22,6 +23,17 @@ class RTClient {
 
             manager.GET(
                 "\(BaseURL)\(TopRentalsURL)",
+                parameters: PrimaryKeyParam,
+                success: success,
+                failure: failure)
+    }
+    
+    func boxOffice(success: (operation: AFHTTPRequestOperation!,
+        responseObject: AnyObject!) -> Void, failure: (operation: AFHTTPRequestOperation!,
+        error: NSError!) -> Void) {
+            
+            manager.GET(
+                "\(BaseURL)\(BoxOfficeURL)",
                 parameters: PrimaryKeyParam,
                 success: success,
                 failure: failure)

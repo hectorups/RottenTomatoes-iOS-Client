@@ -60,6 +60,16 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="O9r-jU-wxD"/>
                                 </connections>
                             </tableView>
+                            <tabBar contentMode="scaleToFill" barStyle="black" id="XLM-q6-8P4">
+                                <rect key="frame" x="0.0" y="519" width="321" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Movies" image="movie" id="UPt-mp-Ali"/>
+                                    <tabBarItem tag="1" title="DVDs" image="dvd" id="IL1-EX-FU4"/>
+                                </items>
+                                <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -70,6 +80,7 @@
                         <outlet property="moviesTableView" destination="QjB-ar-7rM" id="JmV-eg-l3L"/>
                         <outlet property="navigationTitle" destination="hzT-y2-iZB" id="Sqa-tZ-ypR"/>
                         <outlet property="searchBar" destination="eSi-PV-cWN" id="8Zb-1n-9DB"/>
+                        <outlet property="tabBar" destination="XLM-q6-8P4" id="czQ-9U-lFd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -100,7 +111,7 @@
                                                 <rect key="frame" x="24" y="36" width="275" height="203"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vvW-bT-wiR">
@@ -152,9 +163,14 @@
             <point key="canvasLocation" x="162" y="348"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="dvd" width="24" height="24"/>
+        <image name="movie" width="24" height="24"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <color key="tintColor" red="0.92156862745098034" green="0.72549019607843135" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>

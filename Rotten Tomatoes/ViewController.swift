@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UITabBarDelegate {
     
     let client = RTClient()
     var moviesArray: [Movie] = []
@@ -18,6 +18,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var movieTableView: UITableView!
     @IBOutlet weak var navigationTitle: UINavigationItem!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tabBar: UITabBar!
+    
     
     var shouldBeginEditing = true
     
@@ -31,6 +33,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         movieTableView.addSubview(refreshControl)
         
         searchBar.delegate = self
+        tabBar.delegate = self
+        tabBar.selectedItem = tabBar.items?.first as UITabBarItem
         
         let yellow = UIColor(red: 235/255, green: 185/255, blue: 0.0, alpha: 1.0)
         navigationController?.navigationBar.tintColor = yellow
@@ -65,9 +69,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         if searchBar.text.isEmpty {
-            client.topRentals(
-                success,
-                failure: failure)
+            if tabBar.selectedItem?.tag == 1 {
+                client.topRentals(
+                    success,
+                    failure: failure)
+            } else {
+                client.boxOffice(success, failure: failure)
+            }
         } else {
             client.search(searchBar.text, success: success, failure: failure)
         }
@@ -139,6 +147,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem!) {
+        switch item.tag {
+        case 0:
+            println("pressed movies")
+        default:
+            println("pressed dvds")
+        }
+        
+        fetchData()
+    }
 
 }
 
