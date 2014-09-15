@@ -27,12 +27,13 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     override func setHighlighted(highlighted: Bool, animated: Bool) {
+        let yellow = UIColor(red: 235/255, green: 185/255, blue: 0.0, alpha: 1.0)
         if highlighted {
-            synopsisLabel.textColor = UIColor.redColor()
-            titleLabel.textColor = UIColor.redColor()
+            synopsisLabel.textColor = yellow
+            titleLabel.textColor = yellow
         } else {
-            synopsisLabel.textColor = UIColor.blackColor()
-            titleLabel.textColor = UIColor.blackColor()
+            synopsisLabel.textColor = UIColor.whiteColor()
+            titleLabel.textColor = UIColor.whiteColor()
         }
     }
 

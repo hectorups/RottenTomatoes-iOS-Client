@@ -44,6 +44,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     func fetchData(pullrefresh: Bool = false) {
+        view.endEditing(true)
+        
         if !pullrefresh {
             MBProgressHUD.showHUDAddedTo(self.view, animated: true)
         }
@@ -99,7 +101,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = movieTableView.dequeueReusableCellWithIdentifier("com.codepath.rottentomatoes.moviecell") as MovieTableViewCell
         let movie = self.moviesArray[indexPath.row] as Movie
         cell.titleLabel.text = movie.title
-        cell.synopsisLabel.text = movie.synopsis
+        cell.synopsisLabel.text = movie.synopsis.isEmpty ? "No storyline available" : movie.synopsis
         
         cell.thumbImage.setImageWithURLRequest(
             NSURLRequest(URL: NSURL(string: movie.thumbnailUrl)),
@@ -124,13 +126,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         println("search bar button clicked \(searchBar.text)")
         fetchData(pullrefresh: false)
-        view.endEditing(true)
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             view.endEditing(true)
-            fetchData()
         }
     }
     

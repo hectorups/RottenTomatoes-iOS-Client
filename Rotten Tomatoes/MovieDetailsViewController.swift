@@ -16,6 +16,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var detailsScroll: UIScrollView!
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var criticsLabel: UILabel!
     
     var movie : Movie?
     var thumbnail : UIImage?
@@ -23,8 +24,9 @@ class MovieDetailsViewController: UIViewController {
     override func loadView() {
         super.loadView()
 
-        titleLabel.text = movie?.title
+        titleLabel.text = "\(movie!.title) (\(movie!.year))"
         detailsNavigation.title = movie?.title
+        criticsLabel.text = "Critics Score \(movie!.criticsScore), Audience Score: \(movie!.audienceScore)"
         synopsisLabel.text = movie?.synopsis
         synopsisLabel.sizeToFit()
         

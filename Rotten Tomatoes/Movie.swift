@@ -13,12 +13,22 @@ struct Movie {
     var synopsis : String
     var thumbnailUrl : String
     var posterUrl : String
+    var criticsScore : Int
+    var audienceScore : Int
+    var year : Int
     
     init(fromDictionary movieDictionary: NSDictionary){
         title = movieDictionary["title"] as String
         synopsis = movieDictionary["synopsis"] as String
+        
         let posters = movieDictionary["posters"] as NSDictionary
         thumbnailUrl = posters["thumbnail"] as String
         posterUrl = thumbnailUrl.stringByReplacingOccurrencesOfString("tmb", withString: "ori", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        
+        let critics = movieDictionary["ratings"] as NSDictionary
+        criticsScore = critics["critics_score"] as Int
+        audienceScore = critics["audience_score"] as Int
+        
+        year = movieDictionary["year"] as Int
     }
 }
