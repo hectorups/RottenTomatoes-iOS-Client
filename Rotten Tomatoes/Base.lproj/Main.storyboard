@@ -99,26 +99,26 @@
                                 <rect key="frame" x="-6" y="0.0" width="326" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="GS6-WY-9cq">
-                                <rect key="frame" x="0.0" y="65" width="318" height="503"/>
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" id="GS6-WY-9cq">
+                                <rect key="frame" x="0.0" y="0.0" width="318" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view alpha="0.59999999999999964" contentMode="scaleToFill" id="8ll-PI-Ts8">
-                                        <rect key="frame" x="0.0" y="290" width="319" height="213"/>
+                                    <view alpha="0.69999999999999996" contentMode="scaleToFill" id="8ll-PI-Ts8">
+                                        <rect key="frame" x="0.0" y="355" width="319" height="213"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="synopsis" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p5V-9h-y1K">
-                                                <rect key="frame" x="24" y="36" width="275" height="203"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vvW-bT-wiR">
                                                 <rect key="frame" x="24" y="7" width="275" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="synopsis" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p5V-9h-y1K">
+                                                <rect key="frame" x="24" y="36" width="275" height="203"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </label>
                                         </subviews>
@@ -133,6 +133,7 @@
                         <barButtonItem key="backBarButtonItem" title="Movies" id="3O7-aJ-XEg"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="containerView" destination="8ll-PI-Ts8" id="xyx-Dm-22h"/>
                         <outlet property="detailsNavigation" destination="9j3-fU-EfS" id="8ap-4H-AIo"/>
                         <outlet property="detailsScroll" destination="GS6-WY-9cq" id="DrP-ib-pA2"/>
                         <outlet property="posterImage" destination="966-cr-nNt" id="yn2-xW-uSM"/>

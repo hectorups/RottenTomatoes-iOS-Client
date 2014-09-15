@@ -15,6 +15,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var detailsNavigation: UINavigationItem!
     @IBOutlet weak var detailsScroll: UIScrollView!
     @IBOutlet weak var posterImage: UIImageView!
+    @IBOutlet weak var containerView: UIView!
     
     var movie : Movie?
     var thumbnail : UIImage?
@@ -26,7 +27,21 @@ class MovieDetailsViewController: UIViewController {
         detailsNavigation.title = movie?.title
         synopsisLabel.text = movie?.synopsis
         synopsisLabel.sizeToFit()
+        
+        
+        var contentRect = CGRectZero
+        for view in containerView.subviews {
+            contentRect = CGRectUnion(contentRect, view.frame)
+        }
+        
+        println("view Y \(containerView.frame.minY)")
+        println("view height \(containerView.frame.height)")
+        
         detailsScroll.scrollEnabled = true
+        detailsScroll.contentSize = CGSizeMake(contentRect.width, contentRect.height + containerView.frame.height + containerView.frame.height - 50)
+        containerView.frame = CGRectMake(containerView.frame.minX, containerView.frame.minY, containerView.frame.width, contentRect.height + 200)
+        
+        
         posterImage.setImageWithURLRequest(
             NSURLRequest(URL: NSURL(string:movie!.posterUrl)),
             placeholderImage: thumbnail!,
